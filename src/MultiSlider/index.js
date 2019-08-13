@@ -13,7 +13,7 @@ export default class MultiSlider extends Component {
     min: PropTypes.number,
     max: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     slidableZoneSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     backgroundColor: PropTypes.string,
     equalColor: PropTypes.string,
