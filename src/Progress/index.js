@@ -19,7 +19,7 @@ const Progress = ({
   ...props
 }) => (
   <StyledProgress
-    max={max}
+    max={max||100}
     className="progress"
     color={color}
     progress={progress}
@@ -56,7 +56,7 @@ const Progress = ({
 Progress.displayName = 'Progress';
 
 Progress.propTypes = {
-  max:PropTypes.number.isRequired,
+  max:PropTypes.number,
   color: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),
