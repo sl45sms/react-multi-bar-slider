@@ -359,10 +359,10 @@ var getProgressFromMousePosition = function getProgressFromMousePosition(e, reve
   var progressPercentage = Math.round(progressWithinWrapperBoundaries * max) + min;
 
   if (reversed) {
-    return max - (0, _limitProgress2.default)(max - progressPercentage, max);
+    return (0, _limitProgress2.default)(max - progressPercentage, min);
   }
 
-  return min + (0, _limitProgress2.default)(progressPercentage, min);
+  return (0, _limitProgress2.default)(progressPercentage, max);
 };
 
 var getXOffset = function getXOffset(e) {

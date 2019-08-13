@@ -14,12 +14,13 @@ const getProgressFromMousePosition = (e, reversed,min=0,max=100) => {
   const progressWithinWrapperBoundaries =
     eventOffsetFromLeftWrapperBoundary / boundingRect.width;
   const progressPercentage = Math.round(progressWithinWrapperBoundaries * max)+min;
+   	
 
   if (reversed) {
-    return max-limitProgress(max - progressPercentage,max);
+    return limitProgress(max - progressPercentage,min);
   }
 
-  return min+limitProgress(progressPercentage,min);
+  return limitProgress(progressPercentage,max);
 };
 
 const getXOffset = e => {
