@@ -1,7 +1,7 @@
 import getSliderElement from './getSliderElement';
 import limitProgress from './limitProgress';
 
-const getProgressFromMousePosition = (e, reversed) => {
+const getProgressFromMousePosition = (e, reversed,min=0,max=100) => {
   const sliderElement = getSliderElement(e);
   const boundingRect = sliderElement.getBoundingClientRect();
   const xOffset = getXOffset(e);
@@ -13,13 +13,13 @@ const getProgressFromMousePosition = (e, reversed) => {
   const eventOffsetFromLeftWrapperBoundary = xOffset - boundingRect.left;
   const progressWithinWrapperBoundaries =
     eventOffsetFromLeftWrapperBoundary / boundingRect.width;
-  const progressPercentage = Math.round(progressWithinWrapperBoundaries * 100);
+  const progressPercentage = Math.round(progressWithinWrapperBoundaries * max)+min;
 
   if (reversed) {
-    return limitProgress(100 - progressPercentage);
+    return max-limitProgress(max - progressPercentage,max);
   }
 
-  return limitProgress(progressPercentage);
+  return min+limitProgress(progressPercentage,min);
 };
 
 const getXOffset = e => {

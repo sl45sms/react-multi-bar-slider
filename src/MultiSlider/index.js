@@ -10,8 +10,10 @@ export default class MultiSlider extends Component {
   static displayName = 'MultiSlider';
 
   static propTypes = {
+    min: PropTypes.number,
+    max: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+    height: PropTypes.oneOfType([PropTypes.string, PropTypes.number])
     slidableZoneSize: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     backgroundColor: PropTypes.string,
     equalColor: PropTypes.string,
@@ -26,6 +28,8 @@ export default class MultiSlider extends Component {
   };
 
   static defaultProps = {
+    min:0,
+    max:100,
     width: '100%',
     height: 14,
     slidableZoneSize: 7,
@@ -92,6 +96,8 @@ export default class MultiSlider extends Component {
 
   render = () => {
     const {
+      min,
+      max,
       width,
       height,
       slidableZoneSize,
@@ -113,6 +119,8 @@ export default class MultiSlider extends Component {
 
     return (
       <Slider
+	min={min}
+	max={max}
         width={width}
         height={height}
         backgroundColor={backgroundColor}

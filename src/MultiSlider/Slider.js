@@ -4,6 +4,8 @@ import processStyle from '../utils/processStyle';
 import StyledSlider from './StyledSlider';
 
 const Slider = ({
+  min,
+  max,
   width,
   height,
   backgroundColor,
@@ -17,6 +19,8 @@ const Slider = ({
   ...props
 }) => (
   <StyledSlider
+    min={min}
+    max={max}
     width={width}
     height={height}
     backgroundColor={backgroundColor}
@@ -46,6 +50,8 @@ const Slider = ({
 Slider.displayName = 'Slider';
 
 Slider.propTypes = {
+  min: PropTypes.number,
+  max: PropTypes.number,
   width: PropTypes.oneOfType([
     PropTypes.string,
     PropTypes.number
