@@ -4,6 +4,7 @@ import processStyle from '../utils/processStyle';
 import StyledProgress from './StyledProgress';
 
 const Progress = ({
+  max,
   color,
   progress,
   style,
@@ -18,6 +19,7 @@ const Progress = ({
   ...props
 }) => (
   <StyledProgress
+    max={max}
     className="progress"
     color={color}
     progress={progress}
@@ -54,6 +56,7 @@ const Progress = ({
 Progress.displayName = 'Progress';
 
 Progress.propTypes = {
+  max:PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired,
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.func]),

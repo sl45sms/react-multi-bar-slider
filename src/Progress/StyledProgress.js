@@ -7,6 +7,7 @@ const StyledProgress = styled('div')({
   position: 'absolute',
   top: 0,
 }, ({
+  max,
   color,
   progress,
   height,
@@ -20,7 +21,7 @@ const StyledProgress = styled('div')({
 }) => ({
   left: reversed ? 'auto' : 0,
   right: reversed ? 0 : 'auto',
-  width: `${progress || 0}%`,
+  width: `${max/progress || 0}%`,
   height,
   backgroundColor: equal && equalColor ? equalColor : color,
   borderRadius: roundedCorners ? getHalf(height) : 0,
@@ -30,6 +31,7 @@ const StyledProgress = styled('div')({
 }));
 
 StyledProgress.propTypes = {
+  max: PropTypes.number.isRequired,
   color: PropTypes.string.isRequired,
   progress: PropTypes.number.isRequired,
   height: PropTypes.oneOfType([

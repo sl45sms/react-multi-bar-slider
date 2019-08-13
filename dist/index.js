@@ -174,18 +174,15 @@ var MultiSlider = function (_Component) {
           onSlide = _this$props.onSlide,
           reversed = _this$props.reversed,
           readOnly = _this$props.readOnly,
-          min = _this$props.min,
           max = _this$props.max;
 
       if (readOnly) return;
 
-      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, min, max);
+      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, max);
       if (newProgress === null) return;
       onSlide(newProgress);
     }, _this.handleMouseMoveActivate = function (e) {
-      var _this$props2 = _this.props,
-          min = _this$props2.min,
-          max = _this$props2.max;
+      var max = _this.props.max;
 
 
       var isLeftButton = !e.button || e.button === 0;
@@ -194,19 +191,17 @@ var MultiSlider = function (_Component) {
       if (_this.state.mouseDown) return;
       _this.setState({ mouseDown: true });
 
-      var _this$props3 = _this.props,
-          onDragStart = _this$props3.onDragStart,
-          reversed = _this$props3.reversed;
+      var _this$props2 = _this.props,
+          onDragStart = _this$props2.onDragStart,
+          reversed = _this$props2.reversed;
 
       if (!onDragStart) return;
 
-      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, min, max);
+      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, max);
       if (newProgress === null) return;
       onDragStart(newProgress);
     }, _this.handleMouseMoveDeactivate = function (e) {
-      var _this$props4 = _this.props,
-          min = _this$props4.min,
-          max = _this$props4.max;
+      var max = _this.props.max;
 
 
       if (!_this.state.mouseDown) return;
@@ -214,36 +209,35 @@ var MultiSlider = function (_Component) {
 
       _this.handleSlide(e);
 
-      var _this$props5 = _this.props,
-          onDragStop = _this$props5.onDragStop,
-          reversed = _this$props5.reversed;
+      var _this$props3 = _this.props,
+          onDragStop = _this$props3.onDragStop,
+          reversed = _this$props3.reversed;
 
       if (!onDragStop) return;
 
-      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, min, max);
+      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, max);
       if (newProgress === null) return;
       onDragStop(newProgress);
     }, _this.handleMouseMove = function (e) {
       if (!_this.state.mouseDown) return;
       _this.handleSlide(e);
     }, _this.render = function () {
-      var _this$props6 = _this.props,
-          min = _this$props6.min,
-          max = _this$props6.max,
-          width = _this$props6.width,
-          height = _this$props6.height,
-          slidableZoneSize = _this$props6.slidableZoneSize,
-          backgroundColor = _this$props6.backgroundColor,
-          equalColor = _this$props6.equalColor,
-          style = _this$props6.style,
-          onSlide = _this$props6.onSlide,
-          onDragStart = _this$props6.onDragStart,
-          onDragStop = _this$props6.onDragStop,
-          roundedCorners = _this$props6.roundedCorners,
-          reversed = _this$props6.reversed,
-          readOnly = _this$props6.readOnly,
-          children = _this$props6.children,
-          props = _objectWithoutProperties(_this$props6, ['min', 'max', 'width', 'height', 'slidableZoneSize', 'backgroundColor', 'equalColor', 'style', 'onSlide', 'onDragStart', 'onDragStop', 'roundedCorners', 'reversed', 'readOnly', 'children']);
+      var _this$props4 = _this.props,
+          max = _this$props4.max,
+          width = _this$props4.width,
+          height = _this$props4.height,
+          slidableZoneSize = _this$props4.slidableZoneSize,
+          backgroundColor = _this$props4.backgroundColor,
+          equalColor = _this$props4.equalColor,
+          style = _this$props4.style,
+          onSlide = _this$props4.onSlide,
+          onDragStart = _this$props4.onDragStart,
+          onDragStop = _this$props4.onDragStop,
+          roundedCorners = _this$props4.roundedCorners,
+          reversed = _this$props4.reversed,
+          readOnly = _this$props4.readOnly,
+          children = _this$props4.children,
+          props = _objectWithoutProperties(_this$props4, ['max', 'width', 'height', 'slidableZoneSize', 'backgroundColor', 'equalColor', 'style', 'onSlide', 'onDragStart', 'onDragStop', 'roundedCorners', 'reversed', 'readOnly', 'children']);
 
       var childrenArr = _react.Children.toArray(children);
       var allProgressEqual = (0, _progressEqual2.default)(childrenArr);
@@ -252,7 +246,6 @@ var MultiSlider = function (_Component) {
       return _react2.default.createElement(
         _Slider2.default,
         _extends({
-          min: min,
           max: max,
           width: width,
           height: height,
@@ -285,7 +278,6 @@ var MultiSlider = function (_Component) {
 
 MultiSlider.displayName = 'MultiSlider';
 MultiSlider.propTypes = {
-  min: _propTypes2.default.number,
   max: _propTypes2.default.number,
   width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
   height: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]),
@@ -302,7 +294,6 @@ MultiSlider.propTypes = {
   children: _propTypes2.default.node.isRequired
 };
 MultiSlider.defaultProps = {
-  min: 0,
   max: 100,
   width: '100%',
   height: 14,
@@ -343,8 +334,7 @@ var _limitProgress2 = _interopRequireDefault(_limitProgress);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var getProgressFromMousePosition = function getProgressFromMousePosition(e, reversed) {
-  var min = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 0;
-  var max = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 100;
+  var max = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 100;
 
   var sliderElement = (0, _getSliderElement2.default)(e);
   var boundingRect = sliderElement.getBoundingClientRect();
@@ -356,10 +346,10 @@ var getProgressFromMousePosition = function getProgressFromMousePosition(e, reve
 
   var eventOffsetFromLeftWrapperBoundary = xOffset - boundingRect.left;
   var progressWithinWrapperBoundaries = eventOffsetFromLeftWrapperBoundary / boundingRect.width;
-  var progressPercentage = Math.round(progressWithinWrapperBoundaries * max) + min;
+  var progressPercentage = Math.round(progressWithinWrapperBoundaries * max);
 
   if (reversed) {
-    return (0, _limitProgress2.default)(max - progressPercentage, min);
+    return (0, _limitProgress2.default)(max - progressPercentage, max);
   }
 
   return (0, _limitProgress2.default)(progressPercentage, max);
@@ -495,8 +485,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var Slider = function Slider(_ref) {
-  var min = _ref.min,
-      max = _ref.max,
+  var max = _ref.max,
       width = _ref.width,
       height = _ref.height,
       backgroundColor = _ref.backgroundColor,
@@ -507,12 +496,11 @@ var Slider = function Slider(_ref) {
       roundedCorners = _ref.roundedCorners,
       readOnly = _ref.readOnly,
       children = _ref.children,
-      props = _objectWithoutProperties(_ref, ['min', 'max', 'width', 'height', 'backgroundColor', 'style', 'onMouseMoveActivate', 'onMouseMoveDeactivate', 'onMouseMove', 'roundedCorners', 'readOnly', 'children']);
+      props = _objectWithoutProperties(_ref, ['max', 'width', 'height', 'backgroundColor', 'style', 'onMouseMoveActivate', 'onMouseMoveDeactivate', 'onMouseMove', 'roundedCorners', 'readOnly', 'children']);
 
   return _react2.default.createElement(
     _StyledSlider2.default,
     _extends({
-      min: min,
       max: max,
       width: width,
       height: height,
@@ -542,7 +530,6 @@ var Slider = function Slider(_ref) {
 Slider.displayName = 'Slider';
 
 Slider.propTypes = {
-  min: _propTypes2.default.number,
   max: _propTypes2.default.number,
   width: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]).isRequired,
   height: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]).isRequired,
@@ -710,7 +697,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
 
 var Progress = function Progress(_ref) {
-  var color = _ref.color,
+  var max = _ref.max,
+      color = _ref.color,
       progress = _ref.progress,
       style = _ref.style,
       height = _ref.height,
@@ -721,11 +709,12 @@ var Progress = function Progress(_ref) {
       mouseDown = _ref.mouseDown,
       zIndex = _ref.zIndex,
       children = _ref.children,
-      props = _objectWithoutProperties(_ref, ['color', 'progress', 'style', 'height', 'progressEqual', 'equalColor', 'roundedCorners', 'reversed', 'mouseDown', 'zIndex', 'children']);
+      props = _objectWithoutProperties(_ref, ['max', 'color', 'progress', 'style', 'height', 'progressEqual', 'equalColor', 'roundedCorners', 'reversed', 'mouseDown', 'zIndex', 'children']);
 
   return _react2.default.createElement(
     _StyledProgress2.default,
     _extends({
+      max: max,
       className: 'progress',
       color: color,
       progress: progress,
@@ -761,6 +750,7 @@ var Progress = function Progress(_ref) {
 Progress.displayName = 'Progress';
 
 Progress.propTypes = {
+  max: _propTypes2.default.number.isRequired,
   color: _propTypes2.default.string.isRequired,
   progress: _propTypes2.default.number.isRequired,
   style: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func]),
@@ -811,7 +801,8 @@ var StyledProgress = (0, _styled2.default)('div')({
   position: 'absolute',
   top: 0
 }, function (_ref) {
-  var color = _ref.color,
+  var max = _ref.max,
+      color = _ref.color,
       progress = _ref.progress,
       height = _ref.height,
       equal = _ref.equal,
@@ -824,7 +815,7 @@ var StyledProgress = (0, _styled2.default)('div')({
   return _extends({
     left: reversed ? 'auto' : 0,
     right: reversed ? 0 : 'auto',
-    width: (progress || 0) + '%',
+    width: (max / progress || 0) + '%',
     height: height,
     backgroundColor: equal && equalColor ? equalColor : color,
     borderRadius: roundedCorners ? (0, _getHalf2.default)(height) : 0,
@@ -834,6 +825,7 @@ var StyledProgress = (0, _styled2.default)('div')({
 });
 
 StyledProgress.propTypes = {
+  max: _propTypes2.default.number.isRequired,
   color: _propTypes2.default.string.isRequired,
   progress: _propTypes2.default.number.isRequired,
   height: _propTypes2.default.oneOfType([_propTypes2.default.string, _propTypes2.default.number]).isRequired,

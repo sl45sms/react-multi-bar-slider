@@ -3,8 +3,7 @@ import PropTypes from 'prop-types';
 import processStyle from '../utils/processStyle';
 import StyledSlider from './StyledSlider';
 
-const Slider = ({
-  min,
+const Slider = ({ 
   max,
   width,
   height,
@@ -19,7 +18,6 @@ const Slider = ({
   ...props
 }) => (
   <StyledSlider
-    min={min}
     max={max}
     width={width}
     height={height}
@@ -50,7 +48,6 @@ const Slider = ({
 Slider.displayName = 'Slider';
 
 Slider.propTypes = {
-  min: PropTypes.number,
   max: PropTypes.number,
   width: PropTypes.oneOfType([
     PropTypes.string,

@@ -9,8 +9,7 @@ import SlidableZone from './SlidableZone';
 export default class MultiSlider extends Component {
   static displayName = 'MultiSlider';
 
-  static propTypes = {
-    min: PropTypes.number,
+  static propTypes = { 
     max: PropTypes.number,
     width: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
     height: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -28,7 +27,6 @@ export default class MultiSlider extends Component {
   };
 
   static defaultProps = {
-    min:0,
     max:100,
     width: '100%',
     height: 14,
@@ -52,16 +50,16 @@ export default class MultiSlider extends Component {
   };
 
   handleSlide = (e) => {
-    const { onSlide, reversed, readOnly, min, max } = this.props;
+    const { onSlide, reversed, readOnly, max } = this.props;
     if (readOnly) return;
 
-    const newProgress = getProgressFromMousePosition(e, reversed, min, max);
+    const newProgress = getProgressFromMousePosition(e, reversed, max);
     if (newProgress === null) return;
     onSlide(newProgress);
   };
 
   handleMouseMoveActivate = (e) => {
-    const {min, max} = this.props;
+    const {max} = this.props;
 
     const isLeftButton = !e.button || e.button === 0;
     if (!isLeftButton) return;
@@ -72,13 +70,13 @@ export default class MultiSlider extends Component {
     const { onDragStart, reversed } = this.props;
     if (!onDragStart) return;
 
-    const newProgress = getProgressFromMousePosition(e, reversed, min, max);
+    const newProgress = getProgressFromMousePosition(e, reversed, max);
     if (newProgress === null) return;
     onDragStart(newProgress);
   };
 
   handleMouseMoveDeactivate = (e) => {
-    const {min, max} = this.props;
+    const {max} = this.props;
     
     if (!this.state.mouseDown) return;
     this.setState({ mouseDown: false });
@@ -88,7 +86,7 @@ export default class MultiSlider extends Component {
     const { onDragStop, reversed } = this.props;
     if (!onDragStop) return;
 
-    const newProgress = getProgressFromMousePosition(e, reversed, min, max);
+    const newProgress = getProgressFromMousePosition(e, reversed, max);
     if (newProgress === null) return;
     onDragStop(newProgress);
   };
@@ -100,7 +98,6 @@ export default class MultiSlider extends Component {
 
   render = () => {
     const {
-      min,
       max,
       width,
       height,
@@ -123,7 +120,6 @@ export default class MultiSlider extends Component {
 
     return (
       <Slider
-	min={min}
 	max={max}
         width={width}
         height={height}
