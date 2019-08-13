@@ -173,65 +173,77 @@ var MultiSlider = function (_Component) {
       var _this$props = _this.props,
           onSlide = _this$props.onSlide,
           reversed = _this$props.reversed,
-          readOnly = _this$props.readOnly;
+          readOnly = _this$props.readOnly,
+          min = _this$props.min,
+          max = _this$props.max;
 
       if (readOnly) return;
 
-      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed);
+      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, min, max);
       if (newProgress === null) return;
       onSlide(newProgress);
     }, _this.handleMouseMoveActivate = function (e) {
+      var _this$props2 = _this.props,
+          min = _this$props2.min,
+          max = _this$props2.max;
+
+
       var isLeftButton = !e.button || e.button === 0;
       if (!isLeftButton) return;
 
       if (_this.state.mouseDown) return;
       _this.setState({ mouseDown: true });
 
-      var _this$props2 = _this.props,
-          onDragStart = _this$props2.onDragStart,
-          reversed = _this$props2.reversed;
+      var _this$props3 = _this.props,
+          onDragStart = _this$props3.onDragStart,
+          reversed = _this$props3.reversed;
 
       if (!onDragStart) return;
 
-      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed);
+      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, min, max);
       if (newProgress === null) return;
       onDragStart(newProgress);
     }, _this.handleMouseMoveDeactivate = function (e) {
+      var _this$props4 = _this.props,
+          min = _this$props4.min,
+          max = _this$props4.max;
+
+
       if (!_this.state.mouseDown) return;
       _this.setState({ mouseDown: false });
 
       _this.handleSlide(e);
 
-      var _this$props3 = _this.props,
-          onDragStop = _this$props3.onDragStop,
-          reversed = _this$props3.reversed;
+      var _this$props5 = _this.props,
+          onDragStop = _this$props5.onDragStop,
+          reversed = _this$props5.reversed;
 
       if (!onDragStop) return;
 
-      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed);
+      var newProgress = (0, _getProgressFromMousePosition2.default)(e, reversed, min, max);
       if (newProgress === null) return;
       onDragStop(newProgress);
     }, _this.handleMouseMove = function (e) {
       if (!_this.state.mouseDown) return;
       _this.handleSlide(e);
     }, _this.render = function () {
-      var _this$props4 = _this.props,
-          min = _this$props4.min,
-          max = _this$props4.max,
-          width = _this$props4.width,
-          height = _this$props4.height,
-          slidableZoneSize = _this$props4.slidableZoneSize,
-          backgroundColor = _this$props4.backgroundColor,
-          equalColor = _this$props4.equalColor,
-          style = _this$props4.style,
-          onSlide = _this$props4.onSlide,
-          onDragStart = _this$props4.onDragStart,
-          onDragStop = _this$props4.onDragStop,
-          roundedCorners = _this$props4.roundedCorners,
-          reversed = _this$props4.reversed,
-          readOnly = _this$props4.readOnly,
-          children = _this$props4.children,
-          props = _objectWithoutProperties(_this$props4, ['min', 'max', 'width', 'height', 'slidableZoneSize', 'backgroundColor', 'equalColor', 'style', 'onSlide', 'onDragStart', 'onDragStop', 'roundedCorners', 'reversed', 'readOnly', 'children']);
+      var _this$props6 = _this.props,
+          min = _this$props6.min,
+          max = _this$props6.max,
+          width = _this$props6.width,
+          height = _this$props6.height,
+          slidableZoneSize = _this$props6.slidableZoneSize,
+          backgroundColor = _this$props6.backgroundColor,
+          equalColor = _this$props6.equalColor,
+          style = _this$props6.style,
+          onSlide = _this$props6.onSlide,
+          onDragStart = _this$props6.onDragStart,
+          onDragStop = _this$props6.onDragStop,
+          roundedCorners = _this$props6.roundedCorners,
+          reversed = _this$props6.reversed,
+          readOnly = _this$props6.readOnly,
+          children = _this$props6.children,
+          props = _objectWithoutProperties(_this$props6, ['min', 'max', 'width', 'height', 'slidableZoneSize', 'backgroundColor', 'equalColor', 'style', 'onSlide', 'onDragStart', 'onDragStop', 'roundedCorners', 'reversed', 'readOnly', 'children']);
 
       var childrenArr = _react.Children.toArray(children);
       var allProgressEqual = (0, _progressEqual2.default)(childrenArr);

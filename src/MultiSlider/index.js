@@ -52,15 +52,17 @@ export default class MultiSlider extends Component {
   };
 
   handleSlide = (e) => {
-    const { onSlide, reversed, readOnly } = this.props;
+    const { onSlide, reversed, readOnly, min, max } = this.props;
     if (readOnly) return;
 
-    const newProgress = getProgressFromMousePosition(e, reversed);
+    const newProgress = getProgressFromMousePosition(e, reversed, min, max);
     if (newProgress === null) return;
     onSlide(newProgress);
   };
 
   handleMouseMoveActivate = (e) => {
+    const {min, max} = this.props;
+
     const isLeftButton = !e.button || e.button === 0;
     if (!isLeftButton) return;
 
@@ -70,12 +72,14 @@ export default class MultiSlider extends Component {
     const { onDragStart, reversed } = this.props;
     if (!onDragStart) return;
 
-    const newProgress = getProgressFromMousePosition(e, reversed);
+    const newProgress = getProgressFromMousePosition(e, reversed, min, max);
     if (newProgress === null) return;
     onDragStart(newProgress);
   };
 
   handleMouseMoveDeactivate = (e) => {
+    const {min, max} = this.props;
+    
     if (!this.state.mouseDown) return;
     this.setState({ mouseDown: false });
 
@@ -84,7 +88,7 @@ export default class MultiSlider extends Component {
     const { onDragStop, reversed } = this.props;
     if (!onDragStop) return;
 
-    const newProgress = getProgressFromMousePosition(e, reversed);
+    const newProgress = getProgressFromMousePosition(e, reversed, min, max);
     if (newProgress === null) return;
     onDragStop(newProgress);
   };
