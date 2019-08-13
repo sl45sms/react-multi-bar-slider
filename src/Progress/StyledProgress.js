@@ -21,7 +21,7 @@ const StyledProgress = styled('div')({
 }) => ({
   left: reversed ? 'auto' : 0,
   right: reversed ? 0 : 'auto',
-  width: `${max/progress || 0}%`,
+  width: `${progress/max || 0}%`,
   height,
   backgroundColor: equal && equalColor ? equalColor : color,
   borderRadius: roundedCorners ? getHalf(height) : 0,

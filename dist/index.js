@@ -815,7 +815,7 @@ var StyledProgress = (0, _styled2.default)('div')({
   return _extends({
     left: reversed ? 'auto' : 0,
     right: reversed ? 0 : 'auto',
-    width: (max / progress || 0) + '%',
+    width: (progress / max || 0) + '%',
     height: height,
     backgroundColor: equal && equalColor ? equalColor : color,
     borderRadius: roundedCorners ? (0, _getHalf2.default)(height) : 0,
