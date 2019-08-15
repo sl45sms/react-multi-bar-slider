@@ -714,8 +714,8 @@ var Progress = function Progress(_ref) {
   return _react2.default.createElement(
     _StyledProgress2.default,
     _extends({
-      max: max,
-      className: 'progress',
+      max: max || 100,
+      className: 'multi-bar-progress',
       color: color,
       progress: progress,
       height: height,
@@ -750,7 +750,7 @@ var Progress = function Progress(_ref) {
 Progress.displayName = 'Progress';
 
 Progress.propTypes = {
-  max: _propTypes2.default.number.isRequired,
+  max: _propTypes2.default.number,
   color: _propTypes2.default.string.isRequired,
   progress: _propTypes2.default.number.isRequired,
   style: _propTypes2.default.oneOfType([_propTypes2.default.object, _propTypes2.default.func]),

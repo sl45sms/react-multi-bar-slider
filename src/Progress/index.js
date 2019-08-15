@@ -20,7 +20,7 @@ const Progress = ({
 }) => (
   <StyledProgress
     max={max||100}
-    className="progress"
+    className="multi-bar-progress"
     color={color}
     progress={progress}
     height={height}
